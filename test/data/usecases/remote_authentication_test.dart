@@ -62,4 +62,18 @@ void main() {
 
     expect(furure, throwsA(DomainError.unexpected));
   });
+
+  test('Should throw UnexpectedError if HttpClient returns 500', () async {
+    when(
+      httpClient.request(
+        url: anyNamed('url'),
+        method: anyNamed('method'),
+        body: anyNamed('body'),
+      ),
+    ).thenThrow(HttpError.serverError);
+
+    final furure = sut.auth(params);
+
+    expect(furure, throwsA(DomainError.unexpected));
+  });
 }
