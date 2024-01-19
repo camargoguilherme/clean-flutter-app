@@ -76,4 +76,19 @@ void main() {
 
     expect(furure, throwsA(DomainError.unexpected));
   });
+
+  test('Should throw InvalidCredentialsError if HttpClient returns 401',
+      () async {
+    when(
+      httpClient.request(
+        url: anyNamed('url'),
+        method: anyNamed('method'),
+        body: anyNamed('body'),
+      ),
+    ).thenThrow(HttpError.unauthorized);
+
+    final furure = sut.auth(params);
+
+    expect(furure, throwsA(DomainError.invalidCredentials));
+  });
 }
