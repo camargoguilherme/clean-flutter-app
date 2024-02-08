@@ -11,7 +11,7 @@ import 'package:ForDev/data/usecases/usecases.dart';
 class HttpClientSpy extends Mock implements HttpClient {}
 
 void main() {
-  // SUT - System Unde Test
+  // SUT - System Under Test
   RemoteAuthentication sut;
   HttpClientSpy httpClient;
   String url;
